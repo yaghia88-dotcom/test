@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>اختبار تحديد المستوى في اللغة الألمانية | أحمد ياغي</title>
+<meta name="description" content="اختبار مجاني يحدد مستواك في اللغة الألمانية من A1 إلى B2 خلال دقائق، مع توصية بالدورة المناسبة لك.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800;900&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0E2A5C;--navy2:#16397a;--ink:#1c2333;--mute:#6b7488;--line:#e3e7ef;--bg:#f4f6fa;--card:#fff;--ok:#2E9E6B;--bad:#D32F2F;--lvl:#0E2A5C}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:"Cairo",sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;display:flex;flex-direction:column}
+.de{font-family:"Poppins",sans-serif;direction:ltr;unicode-bidi:isolate}
+header{background:var(--navy);color:#fff}
+.flag{display:flex;height:5px}.flag i{flex:1}.flag i:nth-child(1){background:#000}.flag i:nth-child(2){background:#D32F2F}.flag i:nth-child(3){background:#FFC107}
+.hd{max-width:720px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.hd b{font-family:"Poppins",sans-serif;font-weight:700;font-size:15px;letter-spacing:.2px;direction:ltr}
+.hd span{font-size:13px;font-weight:600;opacity:.8}
+main{flex:1;width:100%;max-width:720px;margin:0 auto;padding:20px 16px 40px}
+.card{background:var(--card);border-radius:20px;padding:28px 22px;box-shadow:0 6px 28px rgba(14,42,92,.08)}
+h1{font-size:30px;font-weight:900;color:var(--navy);line-height:1.35}
+h1 em{font-style:normal;background:linear-gradient(transparent 62%,#F2A90066 62%)}
+.lead{margin-top:12px;font-size:16.5px;line-height:1.9;color:#3a4358;font-weight:500}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0}
+.facts div{background:var(--bg);border-radius:14px;padding:14px 8px;text-align:center}
+.facts b{display:block;font-size:22px;font-weight:900;color:var(--navy)}
+.facts span{font-size:13px;color:var(--mute);font-weight:600}
+.steps{display:flex;gap:6px;margin:4px 0 22px}
+.steps i{flex:1;font-style:normal;font-family:"Poppins",sans-serif;font-weight:700;font-size:13px;text-align:center;padding:7px 0;border-radius:9px;color:#fff}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:16px 20px;font-family:inherit;font-size:18px;font-weight:800;cursor:pointer;background:var(--navy);color:#fff;text-align:center;text-decoration:none;transition:transform .12s,background .15s}
+.btn:hover{background:var(--navy2)}.btn:active{transform:scale(.985)}
+.btn.ghost{background:transparent;color:var(--navy);border:2px solid var(--line);font-size:16px;padding:13px 20px}
+.btn.ghost:hover{background:var(--bg)}
+.btn:focus-visible,.opt:focus-visible{outline:3px solid #F2A900;outline-offset:2px}
+.note{margin-top:14px;font-size:13px;color:var(--mute);line-height:1.8;text-align:center}
+/* quiz */
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.pill{font-family:"Poppins",sans-serif;font-weight:700;font-size:14px;color:#fff;background:var(--lvl);padding:5px 14px;border-radius:99px;direction:ltr}
+.count{font-size:14px;font-weight:700;color:var(--mute)}
+.bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:24px}
+.bar i{display:block;height:100%;background:var(--lvl);border-radius:99px;transition:width .3s}
+.task{font-size:15px;font-weight:700;color:var(--mute);margin-bottom:10px}
+.q{font-size:23px;font-weight:600;line-height:1.6;color:var(--ink);text-align:left;background:var(--bg);border-radius:14px;padding:18px 16px;margin-bottom:18px}
+.q u{text-decoration:none;display:inline-block;min-width:64px;border-bottom:3px solid var(--lvl);margin:0 4px;height:1.1em;vertical-align:baseline}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{font-family:"Poppins",sans-serif;font-size:18px;font-weight:600;direction:ltr;background:#fff;border:2px solid var(--line);border-radius:14px;padding:15px 10px;cursor:pointer;color:var(--ink);transition:border-color .12s,background .12s}
+.opt:hover{border-color:var(--lvl)}
+.opt.sel{border-color:var(--lvl);background:var(--lvl);color:#fff}
+.skip{margin-top:14px;background:none;border:0;font-family:inherit;font-size:15px;font-weight:700;color:var(--mute);cursor:pointer;width:100%;padding:10px;text-decoration:underline;text-underline-offset:4px}
+/* result */
+.res{text-align:center}
+.res small{font-size:15px;font-weight:700;color:var(--mute)}
+.badge{width:132px;height:132px;border-radius:50%;margin:14px auto 12px;display:grid;place-items:center;background:var(--lvl);color:#fff;font-family:"Poppins",sans-serif;font-weight:700;font-size:50px;box-shadow:0 10px 30px rgba(14,42,92,.22);direction:ltr}
+.res h2{font-size:25px;font-weight:900;color:var(--navy);line-height:1.5}
+.res p{margin:10px auto 0;font-size:16px;line-height:1.95;color:#3a4358;max-width:560px;font-weight:500}
+.scores{margin:24px 0;text-align:right;display:grid;gap:12px}
+.row{display:grid;grid-template-columns:44px 1fr 96px;align-items:center;gap:10px}
+.row b{font-family:"Poppins",sans-serif;font-size:15px;font-weight:700;direction:ltr;text-align:center}
+.row .tr{height:12px;background:var(--line);border-radius:99px;overflow:hidden;direction:ltr}
+.row .tr i{display:block;height:100%;border-radius:99px;width:0;transition:width .7s ease}
+.row span{font-size:13.5px;font-weight:700;color:var(--mute);text-align:left}
+.row.off{opacity:.45}
+.rec{background:var(--bg);border-radius:16px;padding:20px 16px;margin-bottom:14px;border-top:5px solid var(--lvl)}
+.rec small{display:block;margin-bottom:4px}
+.rec h3{font-size:19px;font-weight:800;color:var(--navy);line-height:1.6;margin-bottom:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+footer{text-align:center;font-size:12.5px;color:var(--mute);padding:18px 16px 26px;font-weight:600}
+@media(max-width:480px){h1{font-size:25px}.q{font-size:20px}.card{padding:22px 16px}.opt{font-size:16.5px}.two{grid-template-columns:1fr}.badge{width:116px;height:116px;font-size:44px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header><div class="flag"><i></i><i></i><i></i></div>
+<div class="hd"><b>Deutsch mit Ahmad Yaghi</b><span>اختبار تحديد المستوى</span></div></header>
+<main><div class="card" id="app"></div></main>
+<footer>© أحمد ياغي · اختبار تقريبي للقواعد والمفردات، ولا يغني عن امتحان رسمي</footer>
+
+<script>
+/* ========== الإعدادات: الروابط والنصوص التي تتغيّر ========== */
+const SITE = "https://deutsch-mit-ahmad-yaghi-s-school.teachable.com";
+const PASS = 6;                       // عدد الإجابات الصحيحة المطلوب (من 10) لاجتياز المستوى
+const COLORS = {A1:"#F2A900",A2:"#2E9E6B",B1:"#0E2A5C",B2:"#3B9BE0",C1:"#7A3FB0"};
+const CONSULT = SITE + "/courses";    // رابط الاستشارة الشخصية
+const RESULTS = {
+  A1:{title:"مستواك: مبتدئ (A1)",
+      text:"أنت في بداية الطريق، وهذا أفضل وقت لتبني أساساً صحيحاً. ابدأ من الحروف والنطق والجمل الأولى، وستتقدّم بسرعة إن مشيت خطوة خطوة.",
+      course:"دورة المبتدئين: المستوى A1 مع الكتاب", url:SITE+"/l/pdp/a1"},
+  A2:{title:"مستواك: أساسي (A2)",
+      text:"أساسيات A1 عندك جيدة. خطوتك التالية هي A2: الماضي (Perfekt)، حالة الـ Dativ، والجمل الجانبية مثل weil و dass.",
+      course:"الدورة المتكاملة: من A2 إلى B1 مع الكتب", url:SITE+"/l/pdp/b1-a2-a1"},
+  B1:{title:"مستواك: متوسط (B1)",
+      text:"تجاوزت A1 و A2 بنجاح. الآن حان وقت B1: Konjunktiv II، المبني للمجهول، الجمل الموصولة، والتحضير لامتحان B1.",
+      course:"الدورة المتكاملة: قواعد B1 والتحضير للامتحان", url:SITE+"/l/pdp/b1-a2-a1"},
+  B2:{title:"مستواك: فوق المتوسط (B2)",
+      text:"مستواك قوي حتى B1. ما ينقصك هو لغة B2: التراكيب الرسمية، الكلام غير المباشر، والتعابير الثابتة التي تحتاجها في العمل والدراسة.",
+      course:"كتب وملخّصات المستوى B2", url:SITE+"/courses"},
+  C1:{title:"مستواك: متقدّم (جاهز لـ C1)",
+      text:"ممتاز! اجتزت كل المستويات حتى B2. تستطيع الآن التركيز على C1 وعلى اللغة التخصصية لمجال عملك أو دراستك.",
+      course:"المكتبة الشاملة: كل الكتب حتى C1", url:SITE+"/courses"}
+};
+
+/* ========== الأسئلة: [الجملة مع ___ , الإجابة الصحيحة , خطأ , خطأ , خطأ] ========== */
+const LEVELS = ["A1","A2","B1","B2"];
+const BANK = {
+A1:[
+ ["Ich ___ Ahmad.","bin","bist","ist","sind"],
+ ["Woher ___ du?","kommst","kommt","kommen","komme"],
+ ["Das ist ___ Tisch.","ein","eine","einen","einer"],
+ ["Wir ___ in Berlin.","wohnen","wohnst","wohnt","wohne"],
+ ["Ich habe ___ Bruder.","einen","ein","eine","einem"],
+ ["___ Uhr ist es?","Wie viel","Wann","Wo","Wer"],
+ ["Ich stehe um 7 Uhr ___.","auf","an","aus","zu"],
+ ["Ich habe ___ Auto.","kein","nicht","keine","nein"],
+ ["Ich ___ gut Deutsch sprechen.","kann","kannst","können","könnt"],
+ ["Mein Haus ist nicht groß. Es ist ___.","klein","lang","teuer","jung"]
+],
+A2:[
+ ["Gestern ___ ich ins Kino gegangen.","bin","habe","war","hatte"],
+ ["Ich habe das Buch schon ___.","gelesen","gelest","lesen","las"],
+ ["Ich gebe ___ Mann das Buch.","dem","den","der","des"],
+ ["Ich lerne Deutsch, ___ ich in Deutschland arbeiten möchte.","weil","denn","deshalb","aber"],
+ ["Mein Auto ist ___ als dein Auto.","schneller","schnell","am schnellsten","mehr schnell"],
+ ["Ich fahre ___ dem Bus zur Arbeit.","mit","bei","von","zu"],
+ ["Wohin legst du das Buch? – Auf ___ Tisch.","den","dem","der","das"],
+ ["Ich freue ___ auf das Wochenende.","mich","mir","sich","dich"],
+ ["Ich weiß nicht, ___ er heute kommt.","ob","wenn","weil","was"],
+ ["Kannst du ___ bitte helfen?","mir","mich","ich","mein"]
+],
+B1:[
+ ["Wenn ich mehr Zeit ___, würde ich mehr reisen.","hätte","habe","hatte","haben"],
+ ["Das ist der Mann, ___ ich gestern geholfen habe.","dem","den","der","dessen"],
+ ["Das Haus ___ letztes Jahr gebaut.","wurde","hat","wird","würde"],
+ ["Ich warte schon lange ___ den Bus.","auf","für","an","über"],
+ ["___ es regnet, gehen wir spazieren.","Obwohl","Trotzdem","Deshalb","Denn"],
+ ["Ich habe vergessen, die Tür ___.","abzuschließen","abschließen","zu abschließen","abgeschlossen"],
+ ["Als ich ein Kind ___, wohnten wir in Amman.","war","bin","wäre","gewesen"],
+ ["___ des schlechten Wetters sind wir zu Hause geblieben.","Wegen","Weil","Obwohl","Deshalb"],
+ ["Er lernt jeden Tag, ___ die Prüfung zu bestehen.","um","damit","weil","dass"],
+ ["Je mehr ich übe, ___ besser spreche ich.","desto","als","dann","wie"]
+],
+B2:[
+ ["Er tut so, ___ er alles wüsste.","als ob","obwohl","damit","sodass"],
+ ["Hätte ich das gewusst, ___ ich früher gekommen.","wäre","hätte","würde","war"],
+ ["Die Entscheidung ___ noch heute getroffen werden.","muss","hat","ist","braucht"],
+ ["Wir müssen endlich eine Entscheidung ___.","treffen","machen","nehmen","tun"],
+ ["Er ist krank; ___ geht er zur Arbeit.","dennoch","obwohl","weil","sodass"],
+ ["Die ___ Kinder liefen über den Hof.","spielenden","gespielten","spielende","spielend"],
+ ["Der Minister sagte, er ___ keine Zeit.","habe","haben","hast","gehabt"],
+ ["___ zahlreicher Proteste wurde das Gesetz verabschiedet.","Trotz","Obwohl","Dennoch","Trotzdem"],
+ ["Der Erfolg hängt ___ ab, wie viel man übt.","davon","darauf","damit","dafür"],
+ ["Das Problem lässt sich leicht ___.","lösen","gelöst","zu lösen","lösbar"]
+]};
+
+/* ========== المنطق ========== */
+const app = document.getElementById("app");
+let li, qi, qs, scores, picked;
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const lat = s => s.replace(/[A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß0-9 ]*[A-Za-zÄÖÜäöüß0-9]/g, '<bdi>$&</bdi>');
+const setLvl = l => document.documentElement.style.setProperty("--lvl", COLORS[l]);
+
+function intro() {
+  setLvl("B1");
+  app.innerHTML = `
+    <h1>ما هو <em>مستواك الحقيقي</em> في اللغة الألمانية؟</h1>
+    <p class="lead">اختبار مجاني يبدأ معك من A1 ويصعد حتى B2. يتوقف تلقائياً عند مستواك، ثم يخبرك من أين تبدأ بالضبط.</p>
+    <div class="facts">
+      <div><b>40</b><span>سؤالاً كحدّ أقصى</span></div>
+      <div><b>10</b><span>دقائق تقريباً</span></div>
+      <div><b>0€</b><span>مجاني تماماً</span></div>
+    </div>
+    <div class="steps">${LEVELS.map(l => `<i style="background:${COLORS[l]}">${l}</i>`).join("")}</div>
+    <button class="btn" id="go">ابدأ الاختبار</button>
+    <p class="note">أجب بدون قاموس أو مترجم. إن لم تعرف الإجابة اضغط «لا أعرف» ولا تخمّن، حتى تكون النتيجة دقيقة.</p>`;
+  document.getElementById("go").onclick = start;
+}
+
+function start() { li = 0; scores = {}; startLevel(); }
+function startLevel() {
+  qi = 0; scores[LEVELS[li]] = 0;
+  qs = shuffle(BANK[LEVELS[li]]).map(q => ({ text: q[0], right: q[1], opts: shuffle(q.slice(1)) }));
+  setLvl(LEVELS[li]); ask();
+}
+
+function ask() {
+  const L = LEVELS[li], q = qs[qi], done = li * 10 + qi;
+  picked = null;
+  app.innerHTML = `
+    <div class="top"><span class="pill">${L}</span><span class="count">السؤال ${qi + 1} من 10</span></div>
+    <div class="bar"><i style="width:${done / 40 * 100}%"></i></div>
+    <p class="task">اختر الكلمة التي تكمل الجملة:</p>
+    <div class="q de">${esc(q.text).replace("___", "<u></u>")}</div>
+    <div class="opts">${q.opts.map((o, i) => `<button class="opt" data-i="${i}">${esc(o)}</button>`).join("")}</div>
+    <button class="skip" id="skip">لا أعرف</button>`;
+  app.querySelectorAll(".opt").forEach(b => b.onclick = () => answer(q.opts[+b.dataset.i], b));
+  document.getElementById("skip").onclick = () => answer(null);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function answer(val, btn) {
+  if (picked !== null) return;
+  picked = val === null ? "" : val;
+  if (btn) btn.classList.add("sel");
+  if (val === qs[qi].right) scores[LEVELS[li]]++;
+  setTimeout(next, btn ? 260 : 0);
+}
+
+function next() {
+  if (++qi < 10) return ask();
+  if (scores[LEVELS[li]] < PASS) return result(LEVELS[li]);
+  if (++li < LEVELS.length) return startLevel();
+  result("C1");
+}
+
+function result(level) {
+  const r = RESULTS[level];
+  setLvl(level);
+  const rows = LEVELS.map(l => {
+    const s = scores[l], off = s === undefined;
+    const label = off ? "لم تصل إليه" : `<bdi dir="ltr">${s} / 10</bdi>${s >= PASS ? " ✓" : ""}`;
+    return `<div class="row${off ? " off" : ""}"><b style="color:${COLORS[l]}">${l}</b>
+      <div class="tr"><i data-w="${off ? 0 : s * 10}" style="background:${COLORS[l]}"></i></div><span>${label}</span></div>`;
+  }).join("");
+  app.innerHTML = `
+    <div class="res">
+      <small>نتيجتك</small>
+      <div class="badge">${level}</div>
+      <h2>${lat(r.title)}</h2>
+      <p>${lat(r.text)}</p>
+      <div class="scores">${rows}</div>
+      <div class="rec">
+        <small>الخطوة المناسبة لك الآن</small>
+        <h3>${lat(r.course)}</h3>
+        <a class="btn" href="${r.url}" style="background:var(--lvl);color:${level === "A1" ? "#0E2A5C" : "#fff"}">ابدأ من هنا</a>
+      </div>
+      <div class="two">
+        <a class="btn ghost" href="${CONSULT}">استشارة شخصية مع أحمد</a>
+        <button class="btn ghost" id="again">أعد الاختبار</button>
+      </div>
+      <p class="note">النتيجة تقيس القواعد والمفردات فقط، ولا تقيس الاستماع والتحدث. للنجاح في مستوى تحتاج 6 إجابات صحيحة من 10.</p>
+    </div>`;
+  document.getElementById("again").onclick = intro;
+  requestAnimationFrame(() => requestAnimationFrame(() =>
+    app.querySelectorAll(".tr i").forEach(i => i.style.width = i.dataset.w + "%")));
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+intro();
+</script>
+</body>
+</html>
