@@ -50,6 +50,17 @@ h1 em{font-style:normal;background:linear-gradient(transparent 62%,#F2A90066 62%
 .opt:hover{border-color:var(--lvl)}
 .opt.sel{border-color:var(--lvl);background:var(--lvl);color:#fff}
 .skip{margin-top:14px;background:none;border:0;font-family:inherit;font-size:15px;font-weight:700;color:var(--mute);cursor:pointer;width:100%;padding:10px;text-decoration:underline;text-underline-offset:4px}
+/* gate */
+.gate{text-align:center}
+.gate .ic{width:84px;height:84px;border-radius:50%;margin:0 auto 14px;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:38px}
+.gate h2{font-size:25px;font-weight:900;color:var(--navy);line-height:1.5}
+.gate p{margin:8px auto 20px;font-size:16px;line-height:1.9;color:#3a4358;max-width:500px;font-weight:500}
+.gate input[type=email]{width:100%;font-family:"Poppins",sans-serif;font-size:18px;direction:ltr;text-align:center;padding:15px 14px;border:2px solid var(--line);border-radius:14px;outline:none;color:var(--ink)}
+.gate input[type=email]:focus{border-color:var(--navy)}
+.gate label{display:flex;gap:10px;align-items:flex-start;text-align:right;font-size:14px;line-height:1.8;color:#3a4358;font-weight:600;margin:14px 0 16px;cursor:pointer}
+.gate label input{width:20px;height:20px;margin-top:4px;flex:none;accent-color:var(--navy)}
+.gate label a{color:var(--navy)}
+.err{color:var(--bad);font-size:14px;font-weight:700;min-height:22px;margin-bottom:6px}
 /* result */
 .res{text-align:center}
 .res small{font-size:15px;font-weight:700;color:var(--mute)}
@@ -83,23 +94,27 @@ footer{text-align:center;font-size:12.5px;color:var(--mute);padding:18px 16px 26
 const SITE = "https://deutsch-mit-ahmad-yaghi-s-school.teachable.com";
 const PASS = 6;                       // عدد الإجابات الصحيحة المطلوب (من 10) لاجتياز المستوى
 const COLORS = {A1:"#F2A900",A2:"#2E9E6B",B1:"#0E2A5C",B2:"#3B9BE0",C1:"#7A3FB0"};
-const CONSULT = SITE + "/courses";    // رابط الاستشارة الشخصية
+const CONSULT = SITE + "/digital-products/1084392";    // رابط الاستشارة الشخصية
+const PRIVACY = SITE + "/p/privacy";   // سياسة الخصوصية
+// نموذج Google الذي يستقبل الإيميلات (جدول الردود في حساب أحمد)
+const FORM = "https://docs.google.com/forms/d/e/1FAIpQLSe8j6WE-b4CAaYdO8XTTEgu2q2g49OwJDP0n4JY644SQqGTQQ/formResponse";
+const F_EMAIL = "entry.254106771", F_LEVEL = "entry.1824452875";
 const RESULTS = {
   A1:{title:"مستواك: مبتدئ (A1)",
       text:"أنت في بداية الطريق، وهذا أفضل وقت لتبني أساساً صحيحاً. ابدأ من الحروف والنطق والجمل الأولى، وستتقدّم بسرعة إن مشيت خطوة خطوة.",
-      course:"دورة المبتدئين: المستوى A1 مع الكتاب", url:SITE+"/l/pdp/a1"},
+      course:"كورس المبتدئين الشامل: A1 و A2 مع الكتب", url:SITE+"/l/pdp/a1-a2"},
   A2:{title:"مستواك: أساسي (A2)",
       text:"أساسيات A1 عندك جيدة. خطوتك التالية هي A2: الماضي (Perfekt)، حالة الـ Dativ، والجمل الجانبية مثل weil و dass.",
-      course:"الدورة المتكاملة: من A2 إلى B1 مع الكتب", url:SITE+"/l/pdp/b1-a2-a1"},
+      course:"كورس المبتدئين الشامل: A1 و A2 مع الكتب", url:SITE+"/l/pdp/a1-a2"},
   B1:{title:"مستواك: متوسط (B1)",
       text:"تجاوزت A1 و A2 بنجاح. الآن حان وقت B1: Konjunktiv II، المبني للمجهول، الجمل الموصولة، والتحضير لامتحان B1.",
-      course:"الدورة المتكاملة: قواعد B1 والتحضير للامتحان", url:SITE+"/l/pdp/b1-a2-a1"},
+      course:"الدورة المتقدمة: B1 و B2 مع الكتب", url:SITE+"/l/pdp/b1-b2"},
   B2:{title:"مستواك: فوق المتوسط (B2)",
       text:"مستواك قوي حتى B1. ما ينقصك هو لغة B2: التراكيب الرسمية، الكلام غير المباشر، والتعابير الثابتة التي تحتاجها في العمل والدراسة.",
-      course:"كتب وملخّصات المستوى B2", url:SITE+"/courses"},
+      course:"الدورة المتقدمة: B1 و B2 مع الكتب", url:SITE+"/l/pdp/b1-b2"},
   C1:{title:"مستواك: متقدّم (جاهز لـ C1)",
       text:"ممتاز! اجتزت كل المستويات حتى B2. تستطيع الآن التركيز على C1 وعلى اللغة التخصصية لمجال عملك أو دراستك.",
-      course:"المكتبة الشاملة: كل الكتب حتى C1", url:SITE+"/courses"}
+      course:"المكتبة الشاملة: كل الكتب حتى C1", url:SITE+"/digital-products/1085869"}
 };
 
 /* ========== الأسئلة: [الجملة مع ___ , الإجابة الصحيحة , خطأ , خطأ , خطأ] ========== */
@@ -174,7 +189,7 @@ function intro() {
     </div>
     <div class="steps">${LEVELS.map(l => `<i style="background:${COLORS[l]}">${l}</i>`).join("")}</div>
     <button class="btn" id="go">ابدأ الاختبار</button>
-    <p class="note">أجب بدون قاموس أو مترجم. إن لم تعرف الإجابة اضغط «لا أعرف» ولا تخمّن، حتى تكون النتيجة دقيقة.</p>`;
+    <p class="note">أجب بدون قاموس أو مترجم. إن لم تعرف الإجابة اضغط «لا أعرف» ولا تخمّن، حتى تكون النتيجة دقيقة. لعرض النتيجة في النهاية ستحتاج إلى إدخال بريدك الإلكتروني.</p>`;
   document.getElementById("go").onclick = start;
 }
 
@@ -210,9 +225,41 @@ function answer(val, btn) {
 
 function next() {
   if (++qi < 10) return ask();
-  if (scores[LEVELS[li]] < PASS) return result(LEVELS[li]);
+  if (scores[LEVELS[li]] < PASS) return gate(LEVELS[li]);
   if (++li < LEVELS.length) return startLevel();
-  result("C1");
+  gate("C1");
+}
+
+const store = { get() { try { return localStorage.getItem("pt_email"); } catch (e) { return null; } },
+                set(v) { try { localStorage.setItem("pt_email", v); } catch (e) {} } };
+function send(email, level) {
+  const detail = level + " (" + LEVELS.filter(l => scores[l] !== undefined).map(l => l + ":" + scores[l]).join(", ") + ")";
+  const body = new URLSearchParams(); body.append(F_EMAIL, email); body.append(F_LEVEL, detail);
+  return fetch(FORM, { method: "POST", mode: "no-cors", body }).catch(() => {});
+}
+
+function gate(level) {
+  if (store.get()) return result(level);
+  setLvl("B1");
+  app.innerHTML = `
+    <form class="gate" id="gf" novalidate>
+      <div class="ic">✓</div>
+      <h2>أنهيت الاختبار، ونتيجتك جاهزة</h2>
+      <p>أدخل بريدك الإلكتروني لترى مستواك والدورة المناسبة لك.</p>
+      <input type="email" id="em" placeholder="name@example.com" autocomplete="email" inputmode="email" required>
+      <label><input type="checkbox" id="ok"><span>أوافق على أن يرسل لي أحمد ياغي دروساً ونصائح وعروضاً على بريدي الإلكتروني. أستطيع إلغاء الاشتراك في أي وقت. <a href="${PRIVACY}" target="_blank" rel="noopener">سياسة الخصوصية</a></span></label>
+      <div class="err" id="er"></div>
+      <button class="btn" type="submit">أظهر نتيجتي</button>
+    </form>`;
+  const em = document.getElementById("em"), ok = document.getElementById("ok"), er = document.getElementById("er");
+  document.getElementById("gf").onsubmit = e => {
+    e.preventDefault();
+    const v = em.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) { er.textContent = "اكتب بريداً إلكترونياً صحيحاً."; em.focus(); return; }
+    if (!ok.checked) { er.textContent = "ضع علامة الموافقة لتظهر نتيجتك."; return; }
+    store.set(v); send(v, level); result(level);
+  };
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function result(level) {
