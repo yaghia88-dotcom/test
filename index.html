@@ -61,6 +61,11 @@ h1 em{font-style:normal;background:linear-gradient(transparent 62%,#F2A90066 62%
 .gate label input{width:20px;height:20px;margin-top:4px;flex:none;accent-color:var(--navy)}
 .gate label a{color:var(--navy)}
 .err{color:var(--bad);font-size:14px;font-weight:700;min-height:22px;margin-bottom:6px}
+/* privacy */
+#privacy{max-width:720px;width:100%;margin:0 auto;padding:0 16px 8px;font-size:13.5px;line-height:1.9;color:#3a4358}
+#privacy summary{cursor:pointer;font-weight:700;color:var(--navy);text-align:center;padding:8px}
+#privacy p{margin-top:8px}
+#privacy a{color:var(--navy)}
 /* result */
 .res{text-align:center}
 .res small{font-size:15px;font-weight:700;color:var(--mute)}
@@ -87,6 +92,16 @@ footer{text-align:center;font-size:12.5px;color:var(--mute);padding:18px 16px 26
 <header><div class="flag"><i></i><i></i><i></i></div>
 <div class="hd"><b>Deutsch mit Ahmad Yaghi</b><span>اختبار تحديد المستوى</span></div></header>
 <main><div class="card" id="app"></div></main>
+<details id="privacy">
+  <summary>خصوصية هذا الاختبار</summary>
+  <p><b>المسؤول عن البيانات:</b> أحمد ياغي، صاحب «Deutsch mit Ahmad Yaghi».</p>
+  <p><b>ماذا نحفظ:</b> بريدك الإلكتروني، ومستواك وعلاماتك في هذا الاختبار. لا نطلب اسمك ولا أي بيانات أخرى.</p>
+  <p><b>لماذا:</b> لنرسل لك دروساً ونصائح وعروضاً لتعلّم الألمانية. الأساس هو موافقتك التي تعطيها بوضع العلامة قبل عرض النتيجة.</p>
+  <p><b>أين تُحفظ:</b> في نموذج Google Forms على حساب أحمد ياغي. شركة Google قد تعالج هذه البيانات على خوادم خارج الاتحاد الأوروبي. ويُحفظ بريدك أيضاً في متصفحك أنت، حتى لا نسألك عنه مرة ثانية.</p>
+  <p><b>إلى متى:</b> حتى تلغي اشتراكك أو تطلب الحذف.</p>
+  <p><b>حقوقك:</b> أن تعرف ما المحفوظ عنك، وأن تطلب تصحيحه أو حذفه، وأن تسحب موافقتك في أي وقت، وأن تشتكي لدى هيئة حماية البيانات في بلدك.</p>
+  <p id="pcontact"></p>
+</details>
 <footer>© أحمد ياغي · اختبار تقريبي للقواعد والمفردات، ولا يغني عن امتحان رسمي</footer>
 
 <script>
@@ -95,7 +110,7 @@ const SITE = "https://deutsch-mit-ahmad-yaghi-s-school.teachable.com";
 const PASS = 6;                       // عدد الإجابات الصحيحة المطلوب (من 10) لاجتياز المستوى
 const COLORS = {A1:"#F2A900",A2:"#2E9E6B",B1:"#0E2A5C",B2:"#3B9BE0",C1:"#7A3FB0"};
 const CONSULT = SITE + "/digital-products/1084392";    // رابط الاستشارة الشخصية
-const PRIVACY = SITE + "/p/privacy";   // سياسة الخصوصية
+const CONTACT = "";                     // بريد التواصل لطلبات الخصوصية (يُضاف حين يحدّده أحمد)
 // نموذج Google الذي يستقبل الإيميلات (جدول الردود في حساب أحمد)
 const FORM = "https://docs.google.com/forms/d/e/1FAIpQLSe8j6WE-b4CAaYdO8XTTEgu2q2g49OwJDP0n4JY644SQqGTQQ/formResponse";
 const F_EMAIL = "entry.254106771", F_LEVEL = "entry.1824452875";
@@ -247,7 +262,7 @@ function gate(level) {
       <h2>أنهيت الاختبار، ونتيجتك جاهزة</h2>
       <p>أدخل بريدك الإلكتروني لترى مستواك والدورة المناسبة لك.</p>
       <input type="email" id="em" placeholder="name@example.com" autocomplete="email" inputmode="email" required>
-      <label><input type="checkbox" id="ok"><span>أوافق على أن يرسل لي أحمد ياغي دروساً ونصائح وعروضاً على بريدي الإلكتروني. أستطيع إلغاء الاشتراك في أي وقت. <a href="${PRIVACY}" target="_blank" rel="noopener">سياسة الخصوصية</a></span></label>
+      <label><input type="checkbox" id="ok"><span>أوافق على أن يرسل لي أحمد ياغي دروساً ونصائح وعروضاً على بريدي الإلكتروني. أستطيع إلغاء الاشتراك في أي وقت. <a href="#privacy" id="plink">خصوصية هذا الاختبار</a></span></label>
       <div class="err" id="er"></div>
       <button class="btn" type="submit">أظهر نتيجتي</button>
     </form>`;
@@ -259,6 +274,7 @@ function gate(level) {
     if (!ok.checked) { er.textContent = "ضع علامة الموافقة لتظهر نتيجتك."; return; }
     store.set(v); send(v, level); result(level);
   };
+  document.getElementById("plink").onclick = e => { e.preventDefault(); const d = document.getElementById("privacy"); d.open = true; d.scrollIntoView({ behavior: "smooth" }); };
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -295,6 +311,7 @@ function result(level) {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
+document.getElementById("pcontact").innerHTML = "<b>للتواصل وطلبات الحذف:</b> " + (CONTACT ? `<span class="de">${CONTACT}</span>` : `عبر <a href="${SITE}" target="_blank" rel="noopener">موقع أحمد ياغي</a>.`);
 intro();
 </script>
 </body>
